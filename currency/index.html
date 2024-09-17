@@ -1,14 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Document</title>
 </head>
-<body>
-    <h1>Currency exchange</h1>
-    
-</body>
-</html>
 
+<body>
+    <h1>Hasher</h1>
+    <input type="text" id="textInput" onkeyup="handleInput()" placeholder="Type something...">
+    <p id="output"></p>
+    <p id="double-hashed-output"></p>
+
+
+
+    <form id="personForm">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="age">Age</label>
+        <input type="number" id="age" name="age" required>
+
+        <label for="sex">Sex</label>
+        <select id="sex" name="sex" required>
+            <option value="">Select</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <div class="result">
+        <h2>Submitted People</h2>
+        <ul id="peopleList"></ul>
+    </div>
+
+
+</body>
+<script src="script.js"></script>
+
+</html>
