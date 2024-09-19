@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        #country-details {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        img {
+            display: block;
+            margin: 0 auto 20px;
+            width: 100px;
+        }
+
+        .details {
+            text-align: center;
+        }
+
+        .details p {
+            font-size: 16px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Country Details</h1>
+    <div id="country-details">
+        <img id="country-flag" alt="Country Flag">
+        <div class="details">
+            <p id="country-name"></p>
+            <p id="country-capital"></p>
+            <p id="country-population"></p>
+            <p id="country-area"></p>
+        </div>
+    </div>
+
+    <script>
+        function loadCountryData() {
+            const countryData = JSON.parse(localStorage.getItem('countryData'));
+            if (countryData) {
+                document.getElementById('country-flag').src = countryData.flagUrl;
+                document.getElementById('country-name').textContent = `Country: ${countryData.name}`;
+                document.getElementById('country-capital').textContent = `Capital: ${countryData.capital}`;
+                document.getElementById('country-population').textContent = `Population: ${countryData.population.toLocaleString()}`;
+                document.getElementById('country-area').textContent = `Area: ${countryData.area.toLocaleString()} km²`;
+            } else {
+                document.getElementById('country-name').textContent = 'No country data found!';
+            }
+        }
+
+        loadCountryData();
+    </script>
+</body>
+</html>
