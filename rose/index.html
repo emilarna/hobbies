@@ -132,11 +132,11 @@
         <div class="quiz-content">
             <h1>Christmas Gift Card Quiz</h1>
             <p>You decide how much money will be on the gift card!</p>
-            <p>For each question answered correctly you get $5</p>
+            <p>For each question answered correctly you get $10</p>
 
             <div id="quiz">
                 <!-- Example question -->
-                <div class="question" data-value="5">
+                <div class="question" data-value="10">
                     <h2>What is the name of the beach town we stayed at in Portugal</h2>
                     <div class="answers">
                         <label><input type="radio" name="q1" value="1"> Sagres</label>
@@ -147,7 +147,7 @@
                     <div class="feedback" id="feedback-q1"></div>
                 </div>
                 <!-- Add more questions here -->
-                <div class="question" data-value="5">
+                <div class="question" data-value="10">
                     <h2>We went to Amsterdam this fall but we also went to</h2>
                     <div class="answers">
                         <label><input type="radio" name="q1" value="1"> Utrecht</label>
@@ -157,7 +157,7 @@
                     <button onclick="submitAnswer(this, '1')">Submit Answer</button>
                     <div class="feedback" id="feedback-q1"></div>
                 </div>
-                <div class="question" data-value="5">
+                <div class="question" data-value="10">
                     <h2>We saw the Habs play the Ducks but what was the final score</h2>
                     <div class="answers">
                         <label><input type="radio" name="q1" value="1"> 1-2</label>
@@ -177,7 +177,7 @@
                     <button onclick="submitAnswer(this, '1')">Submit Answer</button>
                     <div class="feedback" id="feedback-q1"></div>
                 </div>
-                <div class="question" data-value="5">
+                <div class="question" data-value="10">
                     <h2>Kubbi arrived at B99 in</h2>
                     <div class="answers">
                         <label><input type="radio" name="q1" value="1"> January</label>
@@ -187,11 +187,13 @@
                     <button onclick="submitAnswer(this, '2')">Submit Answer</button>
                     <div class="feedback" id="feedback-q1"></div>
                 </div>
-                <div class="question" data-value="15">
+                <div class="question" data-value="10">
                     <h2>Which Chelsea player loves chippy chips?</h2>
                     <div class="answers">
                         <label><input type="radio" name="q1" value="1"> Cole Palmer</label>
                         <label><input type="radio" name="q1" value="2"> Noni Madueke</label>
+                        <label><input type="radio" name="q1" value="6"> Enzo Fernandez</label>
+
                         <label><input type="radio" name="q1" value="3"> Malo Gusto</label>
                     </div>
                     <button onclick="submitAnswer(this, '1')">Submit Answer</button>
@@ -201,6 +203,7 @@
                 <div class="question" data-value="10">
                     <h2>On what floor was our apartment in Portimao</h2>
                     <div class="answers">
+                        <label><input type="radio" name="q1" value="6"> 10</label>
                         <label><input type="radio" name="q1" value="1"> 14</label>
                         <label><input type="radio" name="q1" value="2"> 17</label>
                         <label><input type="radio" name="q1" value="3"> 20</label>
@@ -208,12 +211,15 @@
                     <button onclick="submitAnswer(this, '2')">Submit Answer</button>
                     <div class="feedback" id="feedback-q1"></div>
                 </div>
-                <div class="question" data-value="15">
-                    <h2>DOUBLE: What is my grandfather's (Gústaf) middle name?</h2>
+
+                <div class="question" data-value="10">
+                    <h2>DOUBLE POINTS: What is my grandfather's (Gústaf) middle name?</h2>
                     <div class="answers">
                         <label><input type="radio" name="q1" value="1"> Adolf</label>
                         <label><input type="radio" name="q1" value="2"> Henrik</label>
                         <label><input type="radio" name="q1" value="3"> Fritz</label>
+                        <label><input type="radio" name="q1" value="4"> Páll</label>
+
                     </div>
                     <button onclick="submitAnswer(this, '1',true)">Submit Answer</button>
                     <div class="feedback" id="feedback-q1"></div>
@@ -223,19 +229,32 @@
                     <div class="answers">
                         <label><input type="radio" name="q1" value="1"> Audi A1</label>
                         <label><input type="radio" name="q1" value="2"> Mazda Cx5</label>
+                        <label><input type="radio" name="q1" value="4"> Volkswagen Touareg</label>
                         <label><input type="radio" name="q1" value="3"> Opel Crossland</label>
                     </div>
                     <button onclick="submitAnswer(this, '3')">Submit Answer</button>
                     <div class="feedback" id="feedback-q1"></div>
                 </div>
-                <div class="question" data-value="20">
-                    <h2>DOUBLE: Which of these towns in the Westfjords did we NOT VISIT?</h2>
+                <div class="question" data-value="10">
+                    <h2>DOUBLE POINTS: Which of these towns in the Westfjords did we NOT VISIT?</h2>
                     <div class="answers">
                         <label><input type="radio" name="q1" value="1"> Flateyri</label>
                         <label><input type="radio" name="q1" value="2"> Patreksfjörður</label>
                         <label><input type="radio" name="q1" value="3"> Ísafjörður</label>
+                        <label><input type="radio" name="q1" value="4"> Búðardalue</label>
                     </div>
-                    <button onclick="submitAnswer(this, '3')">Submit Answer</button>
+                    <button onclick="submitAnswer(this, '1',true)">Submit Answer</button>
+                    <div class="feedback" id="feedback-q1"></div>
+                </div>
+                <div class="question" data-value="10">
+                    <h2>Which brand of hockey sticks do I own?</h2>
+                    <div class="answers">
+                        <label><input type="radio" name="q1" value="1"> Bauer</label>
+                        <label><input type="radio" name="q1" value="2"> CCM</label>
+                        <label><input type="radio" name="q1" value="3"> Warrior</label>
+                        <label><input type="radio" name="q1" value="4"> All of the above</label>
+                    </div>
+                    <button onclick="submitAnswer(this, '4')">Submit Answer</button>
                     <div class="feedback" id="feedback-q1"></div>
                 </div>
             </div>
@@ -260,7 +279,7 @@
         let questionsAnswered = 0;
         const totalQuestions = document.querySelectorAll('.question').length;
 
-        function submitAnswer(button, correctAnswer) {
+        function submitAnswer(button, correctAnswer,isDouble=false) {
             const questionDiv = button.parentElement;
             const selectedAnswer = questionDiv.querySelector('input[type=radio]:checked');
 
@@ -273,7 +292,9 @@
             const feedbackDiv = questionDiv.querySelector('.feedback');
 
             if (selectedAnswer.value === correctAnswer) {
-                giftCardValue += value;
+            
+                giftCardValue += isDouble ? value * 2 : value;
+                //giftCardValue += value;
                 document.getElementById('gift-card-value').textContent = giftCardValue;
                 feedbackDiv.textContent = 'Correct!';
                 feedbackDiv.className = 'feedback correct';
