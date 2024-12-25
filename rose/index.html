@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christmas Gift Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #ffefba, #ffffff);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+        }
+        h1 {
+            color: #d62828;
+        }
+        .gift-card {
+            margin: 20px 0;
+            padding: 15px;
+            background: #e0f7fa;
+            border: 1px solid #00bcd4;
+            border-radius: 8px;
+            color: #006064;
+            font-size: 18px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            left: 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .quiz-content {
+            margin-top: 80px;
+        }
+        .question {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+        }
+        .question h2 {
+            margin-bottom: 10px;
+        }
+        .answers {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        .answers label {
+            margin: 5px 0;
+        }
+        button {
+            padding: 10px 20px;
+            background: #d62828;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #a61919;
+        }
+        .feedback {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .correct {
+            color: green;
+        }
+        .incorrect {
+            color: red;
+        }
+        .final-message {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: #e8f5e9;
+            border: 1px solid #4caf50;
+            border-radius: 8px;
+            color: #388e3c;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .store-option {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .store-option:hover {
+            background-color: #f0f0f0;
+        }
+        .store-option.selected {
+            background-color: #dff0d8;
+            border-color: #4caf50;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            .gift-card {
+                font-size: 16px;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="gift-card">
+            Current Gift Card Value: $<span id="gift-card-value">0</span>
+        </div>
+        <div class="quiz-content">
+            <h1>Christmas Gift Card Quiz</h1>
+            <p>You decide how much money will be on the gift card!</p>
+            <p>For each question answered correctly you get $5</p>
+
+            <div id="quiz">
+                <!-- Example question -->
+                <div class="question" data-value="5">
+                    <h2>What is the name of the beach town we stayed at in Portugal</h2>
+                    <div class="answers">
+                        <label><input type="radio" name="q1" value="1"> Sagres</label>
+                        <label><input type="radio" name="q1" value="2"> Lagos</label>
+                        <label><input type="radio" name="q1" value="3"> Portimao</label>
+                    </div>
+                    <button onclick="submitAnswer(this, '3')">Submit Answer</button>
+                    <div class="feedback" id="feedback-q1"></div>
+                </div>
+                <!-- Add more questions here -->
+            </div>
+
+            <div class="final-message" id="final-message">
+                <p> Congratulations! You earned a gift card worth $<span id="final-value"></span>. Select a store and send an email:</p>
+                <div id="store-list">
+                    <div class="store-option" data-store="Pandora">Pandora</div>
+                    <div class="store-option" data-store="Tiffany & Co.">Tiffany & Co.</div>
+                    <div class="store-option" data-store="Swarovski">Swarovski</div>
+                    <div class="store-option" data-store="Sephora">Sephora</div>
+                    <div class="store-option" data-store="Starbucks">Starbucks</div>
+                    <div class="store-option" data-store="Amazon">Amazon</div>
+                </div>
+                <a id="send-email-link" href="#" style="display: none;">Send Email</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let giftCardValue = 0;
+        let questionsAnswered = 0;
+        const totalQuestions = document.querySelectorAll('.question').length;
+
+        function submitAnswer(button, correctAnswer) {
+            const questionDiv = button.parentElement;
+            const selectedAnswer = questionDiv.querySelector('input[type=radio]:checked');
+
+            if (!selectedAnswer) {
+                alert('Please select an answer before submitting!');
+                return;
+            }
+
+            const value = parseInt(questionDiv.dataset.value);
+            const feedbackDiv = questionDiv.querySelector('.feedback');
+
+            if (selectedAnswer.value === correctAnswer) {
+                giftCardValue += value;
+                document.getElementById('gift-card-value').textContent = giftCardValue;
+                feedbackDiv.textContent = 'Correct!';
+                feedbackDiv.className = 'feedback correct';
+            } else {
+                feedbackDiv.textContent = 'Not quite!';
+                feedbackDiv.className = 'feedback incorrect';
+            }
+
+            questionsAnswered++;
+
+            // Disable question after answering
+            questionDiv.querySelectorAll('input[type=radio]').forEach(input => input.disabled = true);
+            button.disabled = true;
+
+            // Check if all questions are answered
+            if (questionsAnswered === totalQuestions) {
+                showFinalMessage();
+            }
+        }
+
+        function showFinalMessage() {
+            const finalMessageDiv = document.getElementById('final-message');
+            document.getElementById('final-value').textContent = giftCardValue;
+            finalMessageDiv.style.display = 'block';
+
+            // Add click event listeners to store options
+            const storeOptions = document.querySelectorAll('.store-option');
+            const emailLink = document.getElementById('send-email-link');
+
+            storeOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    // Deselect other options
+                    storeOptions.forEach(opt => opt.classList.remove('selected'));
+
+                    // Select this option
+                    option.classList.add('selected');
+
+                    // Update email link
+                    const selectedStore = option.dataset.store;
+                    emailLink.href = `mailto:emil.arna@gmail.com?subject=My gift card&body=I earned a $${giftCardValue} gift card at ${selectedStore}`;
+                    emailLink.style.display = 'inline-block';
+                });
+            });
+        }
+    </script>
+</body>
+</html>
