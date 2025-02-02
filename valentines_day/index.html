@@ -19,14 +19,15 @@
             font-family: 'Tangerine', sans-serif;
         }
 
-        /* Letter Styling */
+        /* Initially hide the letter */
         .main-letter {
+            display: none;
             background: url('https://www.transparenttextures.com/patterns/aged-paper.png'),
                 rgb(253, 200, 153);
             /* Aged paper texture */
             background-blend-mode: multiply;
             width: 75%;
-            max-width: 600px;
+            max-width: 900px;
             margin: 50px auto;
             padding: 30px;
             border-radius: 10px;
@@ -35,21 +36,32 @@
             box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
             position: relative;
             text-align: left;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+        }
+
+        /* Show letter smoothly */
+        .show-letter {
+            display: block;
+            opacity: 1;
+            transform: scale(1);
         }
 
         /* Letter Body */
         .letter-body {
             padding: 0;
             font-family: 'Sour Gummy';
-            font-size: 20px;
+            font-size: 28px;
         }
+
         .letter-title {
             font-size: 70px;
         }
 
         /* Buttons */
         button {
-            font-size: 36px;
+            font-size: 76px;
             font-weight: bold;
             padding: 10px 20px;
             border: none;
@@ -84,14 +96,42 @@
         #no-button:hover {
             background-color: #c82333;
         }
+
+        /* Open Button */
+        #open-button {
+            font-size: 30px;
+            background-color: #ff4081;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            margin-top: 50px;
+        }
+
+        #open-button:hover {
+            background-color: #e91e63;
+            transform: scale(1.1);
+        }
+
+        /* Hide button smoothly */
+        .hide-button {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        }
     </style>
 </head>
 
 <body>
-    <h1>Valentine's Day 2025</h1>
+    <h1 style="font-size: 150px;">Valentine's Day 2025</h1>
+
+    <!-- Open Button -->
+    <button id="open-button" onclick="openLetter()">Open Letter</button>
 
     <!-- Letter Content -->
-    <div class="main-letter">
+    <div class="main-letter" id="letter">
         <div class="letter-title">
             <h4>Dear Rosalie</h4>
         </div>
@@ -103,7 +143,6 @@
                 I am super excited for what's to come after this semester and the future with you is looking ever brighter. I can't wait to go see the Habs multiple times a year, seeing you work for the Rocket maybe, take you to LaRonde and making you go on the Goliath, decorate our apartment and turning it into a home. It honestly sounds like so much fun and I am eager to get started.
                 Let's continue to be sassy together in Canada. 💅
                 But all that will not matter unless you are able to answer this question I seemingly have to ask each year. So, without delaying you for much longer, here it goes. Scroll down ⬇️
-
             </p>
             <p id="val-msg">
                 Rosalie, <strong> will you be my Valentine?</strong>
@@ -132,7 +171,7 @@
         noButton.addEventListener("mouseenter", function () {
             document.getElementById("final-message").textContent = "There is no way I'm letting you press 'No'!"
             if (!movedOut) {
-                noButton.style.transform = "translateX(250px)";
+                noButton.style.transform = "translateX(350px)";
             } else {
                 noButton.style.transform = "translateX(0px)";
             }
@@ -143,7 +182,6 @@
             console.log("Yes");
             document.getElementById("final-message").textContent = "👀 Almost there!";
         });
-
 
         // Yes button triggers confetti
         document.getElementById("yes-button").addEventListener("click", function () {
@@ -166,6 +204,23 @@
                 spread: 180,
                 origin: { y: 0.6 }
             });
+        }
+
+        // Open Letter Function
+        function openLetter() {
+            let letter = document.getElementById("letter");
+            let openButton = document.getElementById("open-button");
+
+            letter.style.display = "block"; // Ensure it's visible before transition
+            setTimeout(() => {
+                letter.classList.add("show-letter"); // Smoothly fade in & scale up
+            }, 10);
+
+            openButton.classList.add("hide-button"); // Smoothly fade out button
+
+            setTimeout(() => {
+                openButton.style.display = "none"; // Hide button completely after animation
+            }, 500);
         }
     </script>
 
