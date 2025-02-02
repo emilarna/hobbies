@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day 2025</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <style>
+        body {
+            background-color: pink;
+            text-align: center;
+            font-family: 'Tangerine', sans-serif;
+        }
+
+        /* Letter Styling */
+        .main-letter {
+            background: url('https://www.transparenttextures.com/patterns/aged-paper.png'),
+                rgb(253, 200, 153);
+            /* Aged paper texture */
+            background-blend-mode: multiply;
+            width: 75%;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 10px;
+            font-size: xx-large;
+            border: 2px solid rgba(0, 0, 0, 0.2);
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            text-align: left;
+        }
+
+        /* Letter Body */
+        .letter-body {
+            padding: 0;
+            font-family: 'Sour Gummy';
+            font-size: 20px;
+        }
+        .letter-title {
+            font-size: 70px;
+        }
+
+        /* Buttons */
+        button {
+            font-size: 36px;
+            font-weight: bold;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            margin: 10px;
+        }
+
+        #val-msg {
+            font-size: 45px;
+            padding-top: 400px;
+        }
+
+        /* Yes Button */
+        #yes-button {
+            background-color: #28a745;
+            color: white;
+        }
+
+        #yes-button:hover {
+            background-color: #218838;
+            transform: scale(1.2);
+        }
+
+        /* No Button */
+        #no-button {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        #no-button:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Valentine's Day 2025</h1>
+
+    <!-- Letter Content -->
+    <div class="main-letter">
+        <div class="letter-title">
+            <h4>Dear Rosalie</h4>
+        </div>
+        <div class="letter-body">
+            <p id="main-text">
+                It's so crazy to think that this will be our sixth Valentine's day together! Granted we celebrated our first Valentine's day in two different countries but that does not matter. What matters is we are together for this one and there are
+                many more to come. Even though we can easily get stuck in everyday life, still know that I will do anything for you and love you no matter what happens. Yes, even if you turn into a worm 🪱. This February 14th we will spend in Iceland but considering our plans I can already tell
+                we will celebrate next year's V-day in our own apartment somewhere in Canada! I honestly can't wait to start this new chapter with you, especially where I will finally have the abiliy to walk around in my underwear without fear of someone seeing. All I'm trying to say is that 
+                I am super excited for what's to come after this semester and the future with you is looking ever brighter. I can't wait to go see the Habs multiple times a year, seeing you work for the Rocket maybe, take you to LaRonde and making you go on the Goliath, decorate our apartment and turning it into a home. It honestly sounds like so much fun and I am eager to get started.
+                Let's continue to be sassy together in Canada. 💅
+                But all that will not matter unless you are able to answer this question I seemingly have to ask each year. So, without delaying you for much longer, here it goes. Scroll down ⬇️
+
+            </p>
+            <p id="val-msg">
+                Rosalie, <strong> will you be my Valentine?</strong>
+            </p>
+            <p>
+                From your boyfriend, Emil
+            </p>
+            <p>
+                ps. It's not like you have a choice in this
+            </p>
+
+            <button id="yes-button">Yes</button>
+            <button id="no-button">No</button>
+            <div id="final-message"></div>
+        </div>
+    </div>
+
+    <!-- Include Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1/dist/confetti.browser.min.js"></script>
+
+    <script>
+        let noButton = document.getElementById("no-button");
+        let movedOut = false;
+
+        // No button move effect
+        noButton.addEventListener("mouseenter", function () {
+            document.getElementById("final-message").textContent = "There is no way I'm letting you press 'No'!"
+            if (!movedOut) {
+                noButton.style.transform = "translateX(250px)";
+            } else {
+                noButton.style.transform = "translateX(0px)";
+            }
+            movedOut = !movedOut;
+        });
+
+        document.getElementById("yes-button").addEventListener("mouseenter", function () {
+            console.log("Yes");
+            document.getElementById("final-message").textContent = "👀 Almost there!";
+        });
+
+
+        // Yes button triggers confetti
+        document.getElementById("yes-button").addEventListener("click", function () {
+            console.log("Yes");
+            document.getElementById("final-message").textContent = "YAAAAYYYYY ❤️"
+
+            function startMultipleConfetti(times) {
+                if (times === 0) return;
+                startConfetti();
+                setTimeout(() => startMultipleConfetti(times - 1), 2000);
+            }
+
+            startMultipleConfetti(10);
+        });
+
+        // Confetti function
+        function startConfetti() {
+            confetti({
+                particleCount: 1900,
+                spread: 180,
+                origin: { y: 0.6 }
+            });
+        }
+    </script>
+
+</body>
+
+</html>
