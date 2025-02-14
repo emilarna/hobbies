@@ -9,8 +9,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Moo+Lah+Lah&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
     <style>
         body {
@@ -24,7 +23,6 @@
             display: none;
             background: url('https://www.transparenttextures.com/patterns/aged-paper.png'),
                 rgb(253, 200, 153);
-            /* Aged paper texture */
             background-blend-mode: multiply;
             width: 75%;
             max-width: 900px;
@@ -121,6 +119,20 @@
             transform: scale(0.8);
             transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
         }
+
+        /* Hidden video */
+        #video-container {
+            display: none;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        video {
+            width: 100%;
+            max-width: 800px;
+            border-radius: 10px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+        }
     </style>
 </head>
 
@@ -138,42 +150,28 @@
         <div class="letter-body">
             <p id="main-text">
                 It's so crazy to think that this will be our sixth Valentine's Day together! Granted, we celebrated our first Valentine's Day in two different countries, but that does not matter. What matters is that we are together for this one, and there are many more to come.
-                Even though we can easily get stuck in everyday life, I want you to know that I will do anything for you and love you no matter what happens. Yes, even if you turn into a worm 🪱 though I might have to defend you from Billie or Kubbi eating you.
-                <br>
-                <br>
-                This February 14th, we will spend in Iceland, but considering our plans, I can already tell that next year’s Valentine’s Day will be in our own apartment somewhere in Canada! I honestly can't wait to start this new chapter with you, especially where I will finally have the ability to walk around in my underwear without fear of someone seeing. But beyond that, I can't wait for all the small things:
-                <br>
-                <br>
-                Cooking late-night snacks in our kitchen, taking an hour to decide on a film to watch, playing The 1975 on speaker while cleaning, and just existing together in a space that’s truly ours.
-                <br>
-                <br>
-                I can already see us going to see the Habs multiple times a year, seeing you work for the Rocket (which, let’s be honest, would be so cool), taking you to La Ronde and making sure you actually go on the Goliath this time, and turning our apartment into a cozy home filled with our weird but wonderful energy.
-                <br>
-                <br>
-                It honestly sounds like so much fun, and I am eager to get started.
-                <br>
-                <br>
-                Let's continue to be sassy together in Canada. 💅
-                <br>
-                <br>
-                
+                <br><br>
                 But none of this will matter unless you can answer this question I seemingly have to ask each year. So, without delaying you for much longer, here it goes.
-                
+                <br><br>
                 Scroll down ⬇️
             </p>
             <p id="val-msg">
                 Rosalie, <strong> will you be my Valentine?</strong>
             </p>
-            <p>
-                From your boyfriend, Emil
-            </p>
-            <p>
-                ps. It's not like you have a choice in this
-            </p>
+            <p>From your boyfriend, Emil</p>
+            <p>ps. It's not like you have a choice in this</p>
 
             <button id="yes-button">Yes</button>
             <button id="no-button">No</button>
             <div id="final-message"></div>
+        </div>
+
+        <!-- Hidden Video -->
+        <div id="video-container">
+            <video id="valentine-video" controls>
+                <source src="vids/video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
         </div>
     </div>
 
@@ -196,13 +194,11 @@
         });
 
         document.getElementById("yes-button").addEventListener("mouseenter", function () {
-            console.log("Yes");
             document.getElementById("final-message").textContent = "👀 Almost there!";
         });
 
-        // Yes button triggers confetti
+        // Yes button triggers confetti & video
         document.getElementById("yes-button").addEventListener("click", function () {
-            console.log("Yes");
             document.getElementById("final-message").textContent = "YAAAAYYYYY ❤️"
 
             function startMultipleConfetti(times) {
@@ -212,31 +208,34 @@
             }
 
             startMultipleConfetti(10);
+
+            // Reveal and play the video
+            let videoContainer = document.getElementById("video-container");
+            let video = document.getElementById("valentine-video");
+            videoContainer.style.display = "block";
+            video.play();
         });
 
-        // Confetti function
         function startConfetti() {
             confetti({
-                particleCount: 1900,
-                spread: 180,
+                particleCount: 50,
+                spread: 160,
                 origin: { y: 0.6 }
             });
         }
 
-        // Open Letter Function
         function openLetter() {
             let letter = document.getElementById("letter");
             let openButton = document.getElementById("open-button");
 
-            letter.style.display = "block"; // Ensure it's visible before transition
+            letter.style.display = "block";
             setTimeout(() => {
-                letter.classList.add("show-letter"); // Smoothly fade in & scale up
+                letter.classList.add("show-letter");
             }, 10);
 
-            openButton.classList.add("hide-button"); // Smoothly fade out button
-
+            openButton.classList.add("hide-button");
             setTimeout(() => {
-                openButton.style.display = "none"; // Hide button completely after animation
+                openButton.style.display = "none";
             }, 500);
         }
     </script>
