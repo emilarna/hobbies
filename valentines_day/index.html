@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Moo+Lah+Lah&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Moo+Lah+Lah&family=Sour+Gummy:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
         body {
@@ -18,11 +18,9 @@
             font-family: 'Tangerine', sans-serif;
         }
 
-        /* Initially hide the letter */
         .main-letter {
             display: none;
-            background: url('https://www.transparenttextures.com/patterns/aged-paper.png'),
-                rgb(253, 200, 153);
+            background: url('https://www.transparenttextures.com/patterns/aged-paper.png'), rgb(253, 200, 153);
             background-blend-mode: multiply;
             width: 75%;
             max-width: 900px;
@@ -39,16 +37,13 @@
             transition: opacity 1s ease-in-out, transform 1s ease-in-out;
         }
 
-        /* Show letter smoothly */
         .show-letter {
             display: block;
             opacity: 1;
             transform: scale(1);
         }
 
-        /* Letter Body */
         .letter-body {
-            padding: 0;
             font-family: 'Sour Gummy';
             font-size: 28px;
         }
@@ -57,7 +52,6 @@
             font-size: 70px;
         }
 
-        /* Buttons */
         button {
             font-size: 76px;
             font-weight: bold;
@@ -74,7 +68,6 @@
             padding-top: 1000px;
         }
 
-        /* Yes Button */
         #yes-button {
             background-color: #28a745;
             color: white;
@@ -85,7 +78,6 @@
             transform: scale(1.2);
         }
 
-        /* No Button */
         #no-button {
             background-color: #dc3545;
             color: white;
@@ -95,7 +87,6 @@
             background-color: #c82333;
         }
 
-        /* Open Button */
         #open-button {
             font-size: 30px;
             background-color: #ff4081;
@@ -113,25 +104,38 @@
             transform: scale(1.1);
         }
 
-        /* Hide button smoothly */
         .hide-button {
             opacity: 0;
             transform: scale(0.8);
             transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
         }
 
-        /* Hidden video */
         #video-container {
             display: none;
             margin-top: 20px;
             text-align: center;
         }
 
-        video {
+        iframe {
             width: 100%;
             max-width: 800px;
+            height: 450px;
             border-radius: 10px;
             box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        #unmute-button {
+            display: none;
+            background-color: #ff9800;
+            font-size: 24px;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #unmute-button:hover {
+            background-color: #e67e22;
         }
     </style>
 </head>
@@ -139,57 +143,38 @@
 <body>
     <h1 style="font-size: 150px;">Valentine's Day 2025</h1>
 
-    <!-- Open Button -->
     <button id="open-button" onclick="openLetter()">Open Letter</button>
 
-    <!-- Letter Content -->
     <div class="main-letter" id="letter">
         <div class="letter-title">
             <h4>Dear Rosalie</h4>
         </div>
         <div class="letter-body">
-            <p id="main-text">
-                It's so crazy to think that this will be our sixth Valentine's Day together! Granted, we celebrated our first Valentine's Day in two different countries, but that does not matter. What matters is that we are together for this one, and there are many more to come.
-                <br><br>
-                But none of this will matter unless you can answer this question I seemingly have to ask each year. So, without delaying you for much longer, here it goes.
-                <br><br>
-                Scroll down ⬇️
-            </p>
-            <p id="val-msg">
-                Rosalie, <strong> will you be my Valentine?</strong>
-            </p>
-            <p>From your boyfriend, Emil</p>
-            <p>ps. It's not like you have a choice in this</p>
+            <p>Thank you so much for being a fantastic girlfriend and so nice to me all the time. I can't wait to spend more Vdays with you! I ordered this gift a while back and I was not sure of it but after seeing VICTOR!, VICTOR! yesterday I know you will laugh and there is nothing better than hearing you laugh. I know it's dumb but I hope you enjoy. Love you. Smooch.</p>
+            <p>Scroll down ⬇️</p>
+            <p id="val-msg"><strong>Happy Valentine's day!</strong></p>
+            <p>From your boyfriend, Emil ❤️</p>
 
-            <button id="yes-button">Yes</button>
-            <button id="no-button">No</button>
+            <button id="yes-button">Accept</button>
+            <button id="no-button">Sorry :(</button>
             <div id="final-message"></div>
         </div>
 
-        <!-- Hidden Video -->
         <div id="video-container">
-            <video id="valentine-video" controls>
-                <source src="vids/video.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+            <iframe id="youtube-video" src="https://www.youtube.com/embed/Xz9Lya_ClkY?autoplay=1&mute=0&controls=0&rel=0" frameborder="0" allowfullscreen></iframe>
+            <br>
         </div>
     </div>
 
-    <!-- Include Confetti Library -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1/dist/confetti.browser.min.js"></script>
 
     <script>
         let noButton = document.getElementById("no-button");
         let movedOut = false;
 
-        // No button move effect
         noButton.addEventListener("mouseenter", function () {
-            document.getElementById("final-message").textContent = "There is no way I'm letting you press 'No'!"
-            if (!movedOut) {
-                noButton.style.transform = "translateX(350px)";
-            } else {
-                noButton.style.transform = "translateX(0px)";
-            }
+            document.getElementById("final-message").textContent = "There is no way I'm letting you press 'No'!";
+            noButton.style.transform = movedOut ? "translateX(0px)" : "translateX(350px)";
             movedOut = !movedOut;
         });
 
@@ -197,9 +182,8 @@
             document.getElementById("final-message").textContent = "👀 Almost there!";
         });
 
-        // Yes button triggers confetti & video
         document.getElementById("yes-button").addEventListener("click", function () {
-            document.getElementById("final-message").textContent = "YAAAAYYYYY ❤️"
+            document.getElementById("final-message").textContent = "YAAAAYYYYY ❤️";
 
             function startMultipleConfetti(times) {
                 if (times === 0) return;
@@ -209,19 +193,12 @@
 
             startMultipleConfetti(10);
 
-            // Reveal and play the video
-            let videoContainer = document.getElementById("video-container");
-            let video = document.getElementById("valentine-video");
-            videoContainer.style.display = "block";
-            video.play();
+            document.getElementById("video-container").style.display = "block";
+            document.getElementById("unmute-button").style.display = "inline-block";
         });
 
         function startConfetti() {
-            confetti({
-                particleCount: 50,
-                spread: 160,
-                origin: { y: 0.6 }
-            });
+            confetti({ particleCount: 500, spread: 160, origin: { y: 0.6 } });
         }
 
         function openLetter() {
@@ -229,15 +206,17 @@
             let openButton = document.getElementById("open-button");
 
             letter.style.display = "block";
-            setTimeout(() => {
-                letter.classList.add("show-letter");
-            }, 10);
-
+            setTimeout(() => { letter.classList.add("show-letter"); }, 10);
             openButton.classList.add("hide-button");
-            setTimeout(() => {
-                openButton.style.display = "none";
-            }, 500);
+            setTimeout(() => { openButton.style.display = "none"; }, 500);
         }
+
+        function unmuteVideo() {
+            let video = document.getElementById("youtube-video");
+            video.src = video.src.replace("mute=1", "mute=0");
+        }
+
+        unmuteVideo();
     </script>
 
 </body>
